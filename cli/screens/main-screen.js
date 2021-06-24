@@ -1,4 +1,7 @@
+const { prompt } = require("enquirer");
+
 const Header = require("../components/header");
+const { TIC_TAC_TOE } = require("../types/screen-types");
 
 class MainScreen {
   constructor() {
@@ -7,7 +10,17 @@ class MainScreen {
 
   showScreen() {
     this._header.printHeader();
-    console.log("Prompt goes here ..");
+  }
+
+  async getUserChoice() {
+    const { choice } = await prompt({
+      type: "select",
+      name: "choice",
+      message: "Pick a game",
+      choices: [TIC_TAC_TOE, "Chess", "Go back"],
+    });
+
+    return choice;
   }
 }
 
