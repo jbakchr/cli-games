@@ -1,17 +1,26 @@
-const Header = require("./components/header");
+const MainScreen = require("./screens/main-screen");
+
+const { MAIN_SCREEN } = require("./types/screen-types");
 
 class CliGames {
   constructor() {
-    this._header = new Header("CLI Games");
+    this._screens = [];
+    this._screens.push(new MainScreen());
   }
 
   start() {
-    this._header.printHeader();
-    this.showScreen();
+    this.switchScreen(MAIN_SCREEN);
   }
 
-  showScreen() {
-    console.log("Show main screen");
+  switchScreen(screen) {
+    switch (screen) {
+      case MAIN_SCREEN:
+        this._screens[this._screens.length - 1].showScreen();
+        break;
+      default:
+        console.log("Default ..");
+        break;
+    }
   }
 }
 
