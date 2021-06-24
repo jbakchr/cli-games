@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jbakchr/cli-games/issues"
   },
-  "homepage": "https://github.com/jbakchr/cli-games#readme"
+  "homepage": "https://github.com/jbakchr/cli-games#readme",
+  "dependencies": {
+    "figlet": "^1.5.0"
+  }
 }
