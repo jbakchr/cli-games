@@ -1,1 +1,2 @@
-exports.MAIN_SCREEN = "main";
+exports.MAIN_SCREEN = "Main";
+exports.TIC_TAC_TOE = "Tic Tac Toe";
