@@ -1,6 +1,7 @@
 const MainScreen = require("./screens/main-screen");
+const TicTacToeScreen = require("./screens/tic-tac-toe-screen");
 
-const { MAIN_SCREEN, TIC_TAC_TOE } = require("./types/screen-types");
+const { MAIN, TIC_TAC_TOE } = require("./types/screen-types");
 
 class CliGames {
   constructor() {
@@ -8,21 +9,28 @@ class CliGames {
     this._screens.push(new MainScreen());
   }
 
+  get screen() {
+    return this._screens[this._screens.length - 1];
+  }
+
   start() {
-    this.switchScreen(MAIN_SCREEN);
+    this.switchScreen(MAIN);
   }
 
   async switchScreen(screen) {
     switch (screen) {
-      case MAIN_SCREEN:
-        this._screens[this._screens.length - 1].showScreen();
-        const choice = await this._screens[
-          this._screens.length - 1
-        ].getUserChoice();
-        console.log(choice);
+      case MAIN:
+        const mainScreen = this.screen;
+        mainScreen.showScreen();
+        const choice = await mainScreen.getUserChoice();
+        this.switchScreen(choice);
         break;
       case TIC_TAC_TOE:
-        console.log("Switch to:", TIC_TAC_TOE);
+        this._screens.push(new TicTacToeScreen());
+        const ticTacToeScreen = this.screen;
+        ticTacToeScreen.showScreen();
+        ticTacToeScreen.getUserChoice();
+        break;
       default:
         console.log("Default ..");
         break;

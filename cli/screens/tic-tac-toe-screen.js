@@ -2,11 +2,10 @@ const clear = require("clear");
 const { prompt } = require("enquirer");
 
 const Header = require("../components/header");
-const { TIC_TAC_TOE } = require("../types/screen-types");
 
-class MainScreen {
+class TicTacToeScreen {
   constructor() {
-    this._header = new Header("CLI Games");
+    this._header = new Header("Tic Tac Toe");
   }
 
   showScreen() {
@@ -18,12 +17,16 @@ class MainScreen {
     const { choice } = await prompt({
       type: "select",
       name: "choice",
-      message: "Pick a game",
-      choices: [TIC_TAC_TOE, "Chess", "Go back"],
+      message: "Choose what to do",
+      choices: ["Play", "Go back"],
     });
 
-    return choice;
+    if (choice === "Play") {
+      console.log("Play game ..");
+    } else {
+      return choice;
+    }
   }
 }
 
-module.exports = MainScreen;
+module.exports = TicTacToeScreen;
