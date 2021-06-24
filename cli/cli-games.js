@@ -1,8 +1,16 @@
+const Header = require("./components/header");
+
 class CliGames {
-  constructor() {}
+  constructor() {
+    this._header = new Header("CLI Games");
+  }
 
   start() {
-    console.log("Starting CLI");
+    this._header.printHeader();
+    this.showScreen();
+  }
+
+  showScreen() {
     console.log("Show main screen");
   }
 }
