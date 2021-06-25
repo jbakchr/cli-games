@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jbakchr/cli-games#readme",
   "dependencies": {
+    "chalk": "^4.1.1",
     "clear": "^0.1.0",
     "enquirer": "^2.3.6",
     "figlet": "^1.5.0"

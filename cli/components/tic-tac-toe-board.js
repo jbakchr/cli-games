@@ -1,10 +1,14 @@
 class TicTacToeBoard {
   constructor() {
     this._board = [
-      [" ", " ", " "],
+      ["X", " ", " "],
       [" ", " ", " "],
       [" ", " ", " "],
     ];
+  }
+
+  setBoard(row, col, playerTurn) {
+    this._board[row][col] = playerTurn === 1 ? "X" : "O";
   }
 
   printBoard() {
