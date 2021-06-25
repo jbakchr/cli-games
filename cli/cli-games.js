@@ -18,18 +18,26 @@ class CliGames {
   }
 
   async switchScreen(screen) {
+    let userChoice;
+
     switch (screen) {
       case MAIN:
         const mainScreen = this.screen;
         mainScreen.showScreen();
-        const choice = await mainScreen.getUserChoice();
-        this.switchScreen(choice);
+        userChoice = await mainScreen.getUserChoice();
+        this.switchScreen(userChoice);
         break;
       case TIC_TAC_TOE:
         this._screens.push(new TicTacToeScreen());
         const ticTacToeScreen = this.screen;
         ticTacToeScreen.showScreen();
-        ticTacToeScreen.getUserChoice();
+        userChoice = await ticTacToeScreen.getUserChoice();
+
+        // This should be a while loop that'll constantly play the game at first
+        // and then prompt the user for whether he/she wants to play again or go back
+        if (userChoice === "Play") {
+          ticTacToeScreen.playGame();
+        }
         break;
       default:
         console.log("Default ..");
