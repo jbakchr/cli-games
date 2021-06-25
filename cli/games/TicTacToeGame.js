@@ -1,4 +1,5 @@
 const { prompt } = require("enquirer");
+const chalk = require("chalk");
 
 const TicTacToeBoard = require("../components/tic-tac-toe-board");
 
@@ -19,9 +20,13 @@ class TicTacToeGame {
 
   async printGame() {
     this.showBoard();
-    const { row, col } = await this.getUserSelection();
-    console.log(row, col);
-    this.winner = "Jonas";
+    let choice = await this.getUserSelection();
+    while (!this.isValidSelection(choice.row, choice.col)) {
+      console.log(`\n${chalk.bold.red("INVALID CHOICE")} .. pick again\n`);
+      choice = await this.getUserSelection();
+    }
+    this._board.setBoard(choice.row, choice.col, this._playerTurn);
+    this._playerTurn = this._playerTurn === 1 ? 2 : 1;
   }
 
   showBoard() {
@@ -45,7 +50,9 @@ class TicTacToeGame {
     return { row, col };
   }
 
-  checkUserSelection(row, col) {}
+  isValidSelection(row, col) {
+    return this._board._board[row][col] === " " ? true : false;
+  }
 }
 
 module.exports = TicTacToeGame;
