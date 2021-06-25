@@ -1,8 +1,12 @@
-class TicTacToeGame {
-  _winner = null;
+const { prompt } = require("enquirer");
 
+const TicTacToeBoard = require("../components/tic-tac-toe-board");
+
+class TicTacToeGame {
   constructor() {
-    console.log("Starting game ..");
+    this._winner = null;
+    this._board = new TicTacToeBoard();
+    this._playerTurn = 1;
   }
 
   get winner() {
@@ -13,12 +17,35 @@ class TicTacToeGame {
     this._winner = winner;
   }
 
-  printGame() {
-    console.log("Print board and prompt here ..");
+  async printGame() {
+    this.showBoard();
+    const { row, col } = await this.getUserSelection();
+    console.log(row, col);
     this.winner = "Jonas";
   }
 
-  showBoard() {}
+  showBoard() {
+    this._board.printBoard();
+  }
+
+  async getUserSelection() {
+    const { row, col } = await prompt([
+      {
+        type: "input",
+        name: "row",
+        message: "Choose row",
+      },
+      {
+        type: "input",
+        name: "col",
+        message: "Choose column",
+      },
+    ]);
+
+    return { row, col };
+  }
+
+  checkUserSelection(row, col) {}
 }
 
 module.exports = TicTacToeGame;
