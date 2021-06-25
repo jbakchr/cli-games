@@ -27,12 +27,12 @@ class TicTacToeScreen {
     return choice;
   }
 
-  playGame() {
+  async playGame() {
     this._game = new TicTacToeGame();
 
     while (!this._game.winner) {
       this.showScreen();
-      this._game.printGame();
+      await this._game.printGame();
     }
 
     console.log("Game is over");
