@@ -35,7 +35,10 @@ class TicTacToeGame {
     this._board.setBoard(choice.row, choice.col, this._playerTurn);
 
     // Check win condition
-    this.checkWin();
+    if (this.checkWin()) {
+      console.log("Game is won");
+      this.winner = this._playerTurn === 1 ? "Player 1" : "Player 2";
+    }
 
     // Change player
     this._playerTurn = this._playerTurn === 1 ? 2 : 1;
@@ -68,9 +71,7 @@ class TicTacToeGame {
 
   checkWin() {
     // Check if player has won by rows
-    if (this.checkRowWin()) {
-      this.winner = "Jonas";
-    }
+    return this.checkRowWin();
   }
 
   checkRowWin() {
