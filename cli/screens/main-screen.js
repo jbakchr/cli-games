@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const clear = require("clear");
 const { prompt } = require("enquirer");
 
@@ -18,8 +19,8 @@ class MainScreen {
     const { choice } = await prompt({
       type: "select",
       name: "choice",
-      message: "Pick a game - or exit",
-      choices: [TIC_TAC_TOE, "Chess", EXIT],
+      message: chalk.bold("Pick a game - or exit"),
+      choices: [TIC_TAC_TOE, EXIT],
     });
 
     return choice;
