@@ -2,7 +2,7 @@ const clear = require("clear");
 const { prompt } = require("enquirer");
 
 const Header = require("../components/header");
-const { TIC_TAC_TOE } = require("../types/screen-types");
+const { TIC_TAC_TOE, EXIT } = require("../types/screen-types");
 
 class MainScreen {
   constructor() {
@@ -18,8 +18,8 @@ class MainScreen {
     const { choice } = await prompt({
       type: "select",
       name: "choice",
-      message: "Pick a game",
-      choices: [TIC_TAC_TOE, "Chess", "Go back"],
+      message: "Pick a game - or exit",
+      choices: [TIC_TAC_TOE, "Chess", EXIT],
     });
 
     return choice;

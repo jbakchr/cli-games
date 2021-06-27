@@ -1,7 +1,10 @@
+const chalk = require("chalk");
+const clear = require("clear");
+
 const MainScreen = require("./screens/main-screen");
 const TicTacToeScreen = require("./screens/tic-tac-toe-screen");
 
-const { MAIN, TIC_TAC_TOE, GO_BACK } = require("./types/screen-types");
+const { MAIN, TIC_TAC_TOE, GO_BACK, EXIT } = require("./types/screen-types");
 
 class CliGames {
   constructor() {
@@ -15,6 +18,14 @@ class CliGames {
 
   start() {
     this.switchScreen(MAIN);
+  }
+
+  end() {
+    const ending = "\nArrivederci Franz ..\n";
+    console.log(chalk.bold.red(ending));
+    setTimeout(() => {
+      clear();
+    }, 2500);
   }
 
   async switchScreen(screen) {
@@ -49,10 +60,14 @@ class CliGames {
 
         break;
       case GO_BACK:
-        console.log("Going back ..");
+        // Pop current screen of array of screens
+        this._screens.pop();
+
+        // Show main screen
+        this.switchScreen(MAIN);
         break;
-      default:
-        console.log("Default ..");
+      case EXIT:
+        this.end();
         break;
     }
   }
