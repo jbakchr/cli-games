@@ -1,7 +1,7 @@
 class TicTacToeBoard {
   constructor() {
     this._board = [
-      ["X", "X", " "],
+      [" ", " ", " "],
       [" ", " ", " "],
       [" ", " ", " "],
     ];
