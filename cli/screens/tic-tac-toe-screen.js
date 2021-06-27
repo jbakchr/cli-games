@@ -1,5 +1,6 @@
 const clear = require("clear");
 const { prompt } = require("enquirer");
+const chalk = require("chalk");
 
 const Header = require("../components/header");
 const TicTacToeGame = require("../games/TicTacToeGame");
@@ -35,7 +36,14 @@ class TicTacToeScreen {
       await this._game.printGame();
     }
 
-    console.log("Game is over");
+    // Show final board
+    this.showScreen();
+    this._game.showBoard();
+
+    // Show winner
+    console.log(
+      chalk.bold.inverse.yellow(`Player ${this._game.winner} wins!!\n`)
+    );
   }
 }
 
