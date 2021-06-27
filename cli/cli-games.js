@@ -1,7 +1,7 @@
 const MainScreen = require("./screens/main-screen");
 const TicTacToeScreen = require("./screens/tic-tac-toe-screen");
 
-const { MAIN, TIC_TAC_TOE } = require("./types/screen-types");
+const { MAIN, TIC_TAC_TOE, GO_BACK } = require("./types/screen-types");
 
 class CliGames {
   constructor() {
@@ -40,10 +40,16 @@ class CliGames {
 
         // This should be a while loop that'll constantly play the game at first
         // and then prompt the user for whether he/she wants to play again or go back
-        if (userChoice === "Play") {
-          ticTacToeScreen.playGame();
+        while (userChoice === "Play") {
+          await ticTacToeScreen.playGame();
+          userChoice = await ticTacToeScreen.getUserChoice();
         }
 
+        this.switchScreen(GO_BACK);
+
+        break;
+      case GO_BACK:
+        console.log("Going back ..");
         break;
       default:
         console.log("Default ..");
