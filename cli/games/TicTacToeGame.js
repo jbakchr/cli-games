@@ -71,7 +71,7 @@ class TicTacToeGame {
 
   checkWin() {
     // Check if player has won by rows
-    return this.checkRowWin();
+    return this.checkRowWin() || this.checkColumnWin();
   }
 
   checkRowWin() {
@@ -92,6 +92,29 @@ class TicTacToeGame {
       }
 
       // After all 3 cells are checked then check if there's 3 in a row
+      if (winCounter === 3) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  checkColumnWin() {
+    let winCounter = 0;
+    const playerMarker = this._playerTurn === 1 ? "X" : "O";
+
+    // Loop through each column
+    for (let i = 0; i < this._board._board.length; i++) {
+      for (let j = 0; j < this._board._board[i].length; j++) {
+        if (this._board._board[j][i] === playerMarker) {
+          winCounter++;
+        } else {
+          winCounter = 0;
+          break;
+        }
+      }
+
       if (winCounter === 3) {
         return true;
       }
