@@ -49,13 +49,13 @@ class CliGames {
         // Get users choice for wanting to play or not
         userChoice = await ticTacToeScreen.getUserChoice();
 
-        // This should be a while loop that'll constantly play the game at first
-        // and then prompt the user for whether he/she wants to play again or go back
+        // Keep playing while users choice is 'play'
         while (userChoice === "Play") {
           await ticTacToeScreen.playGame();
           userChoice = await ticTacToeScreen.getUserChoice();
         }
 
+        // Go back
         this.switchScreen(GO_BACK);
 
         break;
