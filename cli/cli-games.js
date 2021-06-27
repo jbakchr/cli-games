@@ -28,9 +28,14 @@ class CliGames {
         this.switchScreen(userChoice);
         break;
       case TIC_TAC_TOE:
+        // Push Tic Tac Toe screen onto array
         this._screens.push(new TicTacToeScreen());
+
+        // Show Tic Tac Toe Screen
         const ticTacToeScreen = this.screen;
         ticTacToeScreen.showScreen();
+
+        // Get users choice for wanting to play or not
         userChoice = await ticTacToeScreen.getUserChoice();
 
         // This should be a while loop that'll constantly play the game at first
@@ -38,6 +43,7 @@ class CliGames {
         if (userChoice === "Play") {
           ticTacToeScreen.playGame();
         }
+
         break;
       default:
         console.log("Default ..");
