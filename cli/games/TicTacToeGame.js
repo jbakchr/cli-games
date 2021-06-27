@@ -71,7 +71,12 @@ class TicTacToeGame {
 
   checkWin() {
     // Check if player has won by rows
-    return this.checkRowWin() || this.checkColumnWin();
+    return (
+      this.checkRowWin() ||
+      this.checkColumnWin() ||
+      this.checkDownwardDiagonalWin() ||
+      this.checkUpwardDiagonalWin()
+    );
   }
 
   checkRowWin() {
@@ -118,6 +123,46 @@ class TicTacToeGame {
       if (winCounter === 3) {
         return true;
       }
+    }
+
+    return false;
+  }
+
+  checkDownwardDiagonalWin() {
+    let winCounter = 0;
+    const playerMarker = this._playerTurn === 1 ? "X" : "O";
+
+    for (let i = 0; i < this._board._board.length; i++) {
+      if (this._board._board[i][i] === playerMarker) {
+        winCounter++;
+      } else {
+        break;
+      }
+    }
+
+    if (winCounter === 3) {
+      return true;
+    }
+
+    return false;
+  }
+
+  checkUpwardDiagonalWin() {
+    let winCounter = 0;
+    const playerMarker = this._playerTurn === 1 ? "X" : "O";
+    let column = 2;
+
+    for (let i = 0; i < this._board._board.length; i++) {
+      if (this._board._board[i][column] === playerMarker) {
+        winCounter++;
+        column--;
+      } else {
+        break;
+      }
+    }
+
+    if (winCounter === 3) {
+      return true;
     }
 
     return false;
