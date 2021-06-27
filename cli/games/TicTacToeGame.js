@@ -53,12 +53,18 @@ class TicTacToeGame {
       {
         type: "input",
         name: "row",
-        message: "Choose row",
+        message: "Choose row [0-2]",
+        validate: (value) => {
+          return value >= 0 && value <= 2;
+        },
       },
       {
         type: "input",
         name: "col",
-        message: "Choose column",
+        message: "Choose column [0-2]",
+        validate: (value) => {
+          return value >= 0 && value <= 2;
+        },
       },
     ]);
 
